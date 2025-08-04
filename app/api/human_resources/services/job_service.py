@@ -10,7 +10,6 @@ class JobService:
 
     def create_jobs(self, job_dtos: List[JobCreate]):
         jobs = [Job(id=dto.id, job=dto.job) for dto in job_dtos]
-        print("jobs", jobs)
         self.repository.bulk_create(jobs)
 
     def get_all_jobs(self) -> List[Job]:

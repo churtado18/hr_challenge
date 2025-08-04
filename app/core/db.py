@@ -11,5 +11,4 @@ def get_session():
     return Session(engine)
 
 def init_db():
-    from app.api.human_resources.models.job_model import Job
     SQLModel.metadata.create_all(engine)
