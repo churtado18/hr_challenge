@@ -5,6 +5,9 @@ from app.api.human_resources.dtos.job_dto import JobBatch
 from app.api.human_resources.services.job_service import JobService
 from app.api.human_resources.dtos.department_dto import DepartmentBatch
 from app.api.human_resources.services.department_service import DepartmentService
+from app.api.human_resources.dtos.hired_employees_dto import HiredEmployeesBatch
+from app.api.human_resources.services.hired_employees_service import HiredEmployeeService
+
 
 router = APIRouter(prefix="/human-resources", tags=["Human Resources"])
 
@@ -47,3 +50,23 @@ def get_department_by_id(department_id: int, session: Session = Depends(get_sess
     if not department:
         return {"error": f"Department with id {department_id} not found."}
     return department
+
+@router.post("/hired-employees", status_code=201, summary="Insert one or many hired employees records")
+def create_hired_employees_batch(payload: HiredEmployeesBatch, session: Session = Depends(get_session)):
+    service = HiredEmployeeService(session)
+    response = service.create_hired_employee(payload.hired_employees)
+    return response
+
+@router.get("/hired-employees", summary="Get all hired employees records")
+def get_all_hired_employees(session: Session = Depends(get_session)):
+    service = HiredEmployeeService(session)
+    hired_employees = service.get_all_hired_employee()
+    return hired_employees
+
+@router.get("/hired-employees/{employee_id}", summary="Get a single hired employees by ID")
+def get_department_by_id(employee_id: int, session: Session = Depends(get_session)):
+    service = HiredEmployeeService(session)
+    hired_employee = service.get_hired_employee_by_id(employee_id)
+    if not hired_employee:
+        return {"error": f"Hired employee with id {employee_id} not found."}
+    return hired_employee
