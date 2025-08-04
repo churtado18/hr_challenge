@@ -8,7 +8,6 @@ class JobRepository:
         self._session = session
 
     def bulk_create(self, jobs: List[Job]):
-        print( self._session)
         self._session.add_all(jobs)
         self._session.commit()
 
