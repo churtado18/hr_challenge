@@ -25,3 +25,7 @@ app.include_router(metrics_api_router)
 def health_check():
     return {"status": "ok"}
 
+@app.get("/")
+def read_root():
+    return {"message": "Hello from Azure!"}
+
