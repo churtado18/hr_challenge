@@ -33,7 +33,7 @@ by the number of employees hired (descending).
 4. The following REST APIs were developed using FastAPI and deployed to Azure App Service:
     - **Human Resources:** Provides read and write access to the jobs, departments, and hired_employees tables.
     - **Metrics:** Retrieves quarterly metrics on hired employees by department.
-5. IAPs can be accessed by internal and external systems through Azure API Management.
+5. APIs can be accessed by internal and external systems through Azure API Management.
 ---
 
 ## Implemented APIs
